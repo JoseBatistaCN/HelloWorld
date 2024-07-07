@@ -1,18 +1,25 @@
-﻿@page "/counter"
-
-<PageTitle>Counter</PageTitle>
+﻿<!-- Child Component -->
+@page "/counter"
 
 <h1>Counter</h1>
+<p>@Message</p>
 
-<p role="status">Current count: @currentCount</p>
+@code
+{
+    [Parameter] 
+    public int Count { get; set; } = 0;
+    public string? Message { get; set; }
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    protected override void OnParametersSet()
     {
-        currentCount++;
+        if (string.IsNullOrEmpty(Message))
+        {
+            Message = "Parameters set for the first time";
+        }
+        else
+        {
+            Message = "Parameter reset to + " + Count;
+        }
+        base.OnParametersSet();
     }
 }

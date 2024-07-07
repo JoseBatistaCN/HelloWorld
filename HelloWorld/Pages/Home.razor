@@ -5,3 +5,14 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<button @onclick=IncrementCount>Click</button>
+@code
+{
+    int TheCount { get; set; } = 1;
+
+    void IncrementCount()
+    {
+        TheCount++;
+    }
+}
